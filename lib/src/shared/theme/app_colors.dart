@@ -9,9 +9,12 @@ class AppColors {
   static final cyanDark = Color(0xFF409BE0);
   static final yellow = Color(0xFFFAC736);
   static final white = Color(0xFFFFFFFF);
+  static final black = Color(0xFF000000);
+  static final gray = Color(0xFFF2F5FA);
 
   static final linearGradient = LinearGradient(
-      colors: [AppColors.cyan, AppColors.purpleDark],
-      begin: Alignment(-2, -0.8),
-      end: Alignment(0.7, 0));
+    colors: [AppColors.cyan, AppColors.purpleDark],
+    begin: Alignment(-2, -0.8),
+    end: Alignment(0.7, 0),
+  );
 }
