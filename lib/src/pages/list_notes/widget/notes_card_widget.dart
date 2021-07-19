@@ -3,7 +3,24 @@ import 'package:journal_flutter/src/shared/theme/app_colors.dart';
 import 'package:journal_flutter/src/shared/theme/text_styles.dart';
 
 class NotesCardWidget extends StatefulWidget {
-  NotesCardWidget({Key? key}) : super(key: key);
+  final String color;
+  final String title;
+  final String text;
+  final String createdAt;
+  final bool isFavorite;
+  final bool isAttached;
+  final bool isDate;
+
+  NotesCardWidget({
+    Key? key,
+    required this.color,
+    required this.title,
+    required this.text,
+    required this.isFavorite,
+    required this.isAttached,
+    required this.isDate,
+    required this.createdAt,
+  }) : super(key: key);
 
   @override
   _NotesCardWidgetState createState() => _NotesCardWidgetState();
@@ -29,7 +46,17 @@ class _NotesCardWidgetState extends State<NotesCardWidget> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
-              color: AppColors.pink,
+              color: widget.color == "pink"
+                  ? AppColors.pink
+                  : widget.color == 'green'
+                      ? AppColors.green
+                      : widget.color == 'purple'
+                          ? AppColors.purple
+                          : widget.color == 'yellow'
+                              ? AppColors.yellow
+                              : widget.color == 'cyan'
+                                  ? AppColors.cyan
+                                  : null,
             ),
             width: double.infinity,
             child: Padding(
@@ -39,7 +66,7 @@ class _NotesCardWidgetState extends State<NotesCardWidget> {
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Notas", style: TextStyles.cardTitle),
+                      child: Text(widget.title, style: TextStyles.cardTitle),
                     ),
                   ),
                 ],
@@ -54,25 +81,31 @@ class _NotesCardWidgetState extends State<NotesCardWidget> {
             child: Row(
               textDirection: TextDirection.rtl,
               children: [
-                Icon(
-                  Icons.date_range,
-                  color: AppColors.black.withOpacity(0.54),
-                ),
-                Icon(
-                  Icons.favorite,
-                  color: AppColors.black.withOpacity(0.54),
-                ),
-                Icon(
-                  Icons.attach_file,
-                  color: AppColors.black.withOpacity(0.54),
-                ),
+                widget.isDate == true
+                    ? Icon(
+                        Icons.date_range,
+                        color: AppColors.black.withOpacity(0.54),
+                      )
+                    : Container(),
+                widget.isFavorite == true
+                    ? Icon(
+                        Icons.favorite,
+                        color: AppColors.black.withOpacity(0.54),
+                      )
+                    : Container(),
+                widget.isAttached == true
+                    ? Icon(
+                        Icons.attach_file,
+                        color: AppColors.black.withOpacity(0.54),
+                      )
+                    : Container(),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "asdfasd",
+              widget.text,
               style: TextStyles.cardText,
               textAlign: TextAlign.left,
             ),
@@ -80,7 +113,7 @@ class _NotesCardWidgetState extends State<NotesCardWidget> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "Criado em: 16/07/2021",
+              "Criado em: ${widget.createdAt}",
               style: TextStyles.cardCreatedAt,
             ),
           )

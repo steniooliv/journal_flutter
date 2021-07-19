@@ -16,6 +16,59 @@ class ListNotesPage extends StatefulWidget {
 }
 
 class _ListNotesPageState extends State<ListNotesPage> {
+  final notes = [
+    {
+      "color": "pink",
+      "title": "Não Esquecer",
+      "text":
+          "Lorem ipsum dolor sit amet, consecter adipiscing elit, sed  incididunt ut labore et dolore aliqua.",
+      "isFavorite": true,
+      "isAttached": true,
+      "isDate": true,
+      "createdAt": "18/07/2016",
+    },
+    {
+      "color": "green",
+      "title": "Reunião com os stakeholders",
+      "text":
+          "• Ipsum dolor sit amet, consectur. \n• Adipiscing elit, sed do eiusmod tempor incidi. \n• Ut labore et dolore magna aliqua.",
+      "isFavorite": false,
+      "isAttached": true,
+      "isDate": false,
+      "createdAt": "18/07/2016",
+    },
+    {
+      "color": "purple",
+      "title": "Lembretes para o médico",
+      "text":
+          "Lorem ipsum dolor , consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "isFavorite": true,
+      "isAttached": true,
+      "isDate": true,
+      "createdAt": "18/07/2016",
+    },
+    {
+      "color": "cyan",
+      "title": "Idéias para o novo app 2022",
+      "text":
+          "• Ipsum dolor sit amet, consectur. \n• Adipiscing elit, sed do eiusmod tempor incidi. \n• Ut labore et dolore.",
+      "isFavorite": false,
+      "isAttached": false,
+      "isDate": false,
+      "createdAt": "18/07/2016",
+    },
+    {
+      "color": "yellow",
+      "title": "Reunião do grupo de treinamento",
+      "text":
+          "Lorem ipsum dolor sit amet, consecter adipiscing elit, sed  incididunt ut labore et dolore aliqua.",
+      "isFavorite": false,
+      "isAttached": false,
+      "isDate": false,
+      "createdAt": "18/07/2016",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,17 +104,29 @@ class _ListNotesPageState extends State<ListNotesPage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Scrollbar(
+              child: RawScrollbar(
+                thumbColor: Color(0xFFAFACF3),
                 isAlwaysShown: true,
-                showTrackOnHover: true,
+                thickness: 7,
+                radius: Radius.circular(10),
                 child: StaggeredGridView.countBuilder(
+                  scrollDirection: Axis.vertical,
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  primary: false,
-                  crossAxisCount: 4,
-                  itemCount: 8,
+                  crossAxisCount: 2,
+                  itemCount: notes.length,
                   itemBuilder: (BuildContext context, int index) =>
-                      NotesCardWidget(),
-                  staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+                      NotesCardWidget(
+                    color: notes[index]["color"].toString(),
+                    title: notes[index]["title"].toString(),
+                    text: notes[index]["text"].toString(),
+                    isFavorite:
+                        notes[index]["isFavorite"] == true ? true : false,
+                    isAttached:
+                        notes[index]["isAttached"] == true ? true : false,
+                    isDate: notes[index]["isDate"] == true ? true : false,
+                    createdAt: notes[index]["createdAt"].toString(),
+                  ),
+                  staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
                   mainAxisSpacing: 16.0,
                   crossAxisSpacing: 16.0,
                 ),
