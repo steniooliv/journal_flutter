@@ -1,7 +1,6 @@
 import 'package:animated_card/animated_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:journal_flutter/src/pages/home/home_page.dart';
 import 'package:journal_flutter/src/pages/list_notes/list_notes_page.dart';
 import 'package:journal_flutter/src/shared/theme/app_colors.dart';
 import 'package:journal_flutter/src/shared/theme/text_styles.dart';
